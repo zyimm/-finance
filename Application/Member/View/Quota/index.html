@@ -1,0 +1,47 @@
+<if condition="!empty($is_ajax)">
+    <div class="border box-shadow radius padding">
+        <blockquote class="layui-elem-quote radius">额度申请</blockquote>
+        <table class="table"> 
+            <tr>
+                <td>申请金额( 元)：</td>
+                <td><input type="number" class='input' id="money" /></td>
+            </tr>
+            <tr>
+                <td>申请说明:：</td>
+                <td><textarea name="" id="info" class='input' cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan=2 align='center'><button class="button bg-main"  onclick="apply()">申请</button></td>
+            </tr>
+        </table>
+    </div>
+</if>
+
+<script type="text/javascript"> 
+    var apply = function(){
+        
+        
+        $.ajax({
+            url:'__CONTROLLER__/apply',
+            type:'post',
+            data:{money:$('#money').val(),info:$('#info').val()},
+            dataType:'json',
+            success:function (result,status,xhr){
+                if(result.status == 1){
+                    layer.msg(result.info,{icon:1});
+                }else{
+                    layer.msg(result.info,{icon:2});
+                }
+                
+            },
+            error:function(result,status,xhr){
+                console.log("E:");
+                console.log(result);
+                console.log(status);
+                
+            },
+            async:true,
+            timeout:10000   
+        });
+    };
+</script>

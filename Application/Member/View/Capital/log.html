@@ -1,0 +1,68 @@
+<div class="border box-shadow radius padding ">
+    <blockquote class="layui-elem-quote radius">资金历史记录了您各种交易产生的支出和收入的明细， 请选择事件类型和时间，然后点击“查看”按钮浏览</blockquote>
+    <div class="alert text-main"> 
+        <form class="layui-form" action="">
+          <div class="layui-form-item">
+            <label class="layui-form-label">类型:</label>
+            <div class="layui-input-inline">
+              <select name="city" lay-verify="required">
+                <option value=""></option>
+                <option value="0">北京</option>
+                <option value="1">上海</option>
+                <option value="2">广州</option>
+                <option value="3">深圳</option>
+                <option value="4">杭州</option>
+              </select>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">日期</label>
+              <div class="layui-input-inline">
+                <input name="date" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})" type="text">
+              </div>     
+            </div>
+            <span>~</span>
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <input name="date" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})" type="text">
+              </div>
+            </div>
+            <div class='text-center margin-top'> 
+                <button class="button icon-eye border-main margin-right " onclick="sdetail()">查看</button>
+                <a href="/member/capital/export?" class="button icon-cloud-download border-dot" target="_blank">下载</a>
+            </div>
+            
+          </div>
+        <form>  
+    </div>
+    <table class="table"> 
+        <tr>
+        	<th>发生日期</th>
+        	<th>类型</th>
+        	<th>影响金额</th>
+        	<th>可用余额</th>
+        	<th>冻结金额</th>
+        	<th>待收金额</th>
+        	<th>说明</th>
+    
+        </tr>
+        <tr> 
+        <td colspan =7>
+            {$page}
+        </td>
+        
+    </tr>
+    </table>
+</div>
+
+<script>
+layui.use(['form','laydate'], function(){
+  var form = layui.form()
+  ,laydate = layui.laydate;
+  form.render();
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>

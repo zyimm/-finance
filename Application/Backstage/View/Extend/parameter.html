@@ -1,0 +1,165 @@
+<div class="padding table-responsive">
+	{:crumbs($menu_id)}
+    <blockquote class="layui-elem-quote margin">
+        <p class='text-dot'> 1.参数新增或者删除操作时，请记住点击下方的确认按钮来提交您的新数据！</p>
+        <p class='text-dot'> 2.所有参数的修改或者删除操作提交一次即可,修改后请清空数据缓存，以便新参数即时生效！</p>
+        <p class='text-dot'> 3.为了安全，所有参数一旦设定提交的，则不能修改参数名，只能修改参数，若填写错误则删除原来再新增！</p>
+    </blockquote>
+
+    <form method="post" action="__ACTION__" enctype="multipart/form-data">
+    <div class="tab padding">
+        <div class="tab-head">
+            <ul class="tab-nav">
+                <li class="active">
+                    <a href="#tab-1">借款用途</a>
+                </li>
+                <li>
+                    <a href="#tab-2">最小金额</a>
+                </li>
+                <li>
+                    <a href="#tab-3">最大金额</a>
+                </li>
+                <li>
+                    <a href="#tab-4">募资时间</a>
+                </li>
+                <li>
+                    <a href="#tab-5">查询金额</a>
+                </li>
+                <li>
+                    <a href="#tab-6">提现银行</a>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="tab-body">
+            <div class="tab-panel active padding" id="tab-1">
+                <table class="table"> 
+                    <tr> 
+                        <th>序号</th>
+                        <th>参数名称</th>
+                        <th>参数值</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="data.BORROW_USE" id="v" key='k'>
+                    <tr>
+                        <td>{$k}</td>
+                        <td><input type="text" name='BORROW_USE[{$key}]' class="input" disabled = disabled value='{$key}'/></td>
+                        <td><input type="text" name='BORROW_USE[{$key}]' class="input" value='{$v}' /></td>
+                        <td>
+                            <a href="javascript:void(0);" onclick="delxa({$key});">[删除]</a>  
+                        </td>
+                    </tr>
+                    </volist>
+                    
+                </table>
+            </div>
+            <div class="tab-panel padding" id="tab-2">
+                <table class="table"> 
+                    <tr> 
+                        <th>序号</th>
+                        <th>参数名称</th>
+                        <th>参数值</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="data.BORROW_MIN" id="v" key='k'>
+                    <tr>
+                        <td>{$k}</td>
+                        <td><input type="text" name='BORROW_MIN[{$key}]' class="input" disabled = disabled value='{$key}'/></td>
+                        <td><input type="text" name='BORROW_MIN[{$key}]' class="input" value='{$v}' /></td>
+                        <td>
+                            <a href="javascript:void(0);" onclick="delxa({$key});">[删除]</a>  
+                        </td>
+                    </tr>
+                    </volist>
+                    
+                </table>
+            </div>
+            <div class="tab-panel padding" id="tab-3">
+                <table class="table"> 
+                    <tr> 
+                        <th>序号</th>
+                        <th>参数名称</th>
+                        <th>参数值</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="data.BORROW_MAX" id="v" key='k'>
+                    <tr>
+                        <td>{$k}</td>
+                        <td><input type="text" name='BORROW_MAX[{$key}]' class="input" disabled = disabled value='{$key}'/></td>
+                        <td><input type="text" name='BORROW_MAX[{$key}]' class="input" value='{$v}' /></td>
+                        <td>
+                            <a href="javascript:void(0);" onclick="delxa({$key});">[删除]</a>  
+                        </td>
+                    </tr>
+                    </volist>
+                    
+                </table>
+            </div>
+            <div class="tab-panel padding" id="tab-4">
+                <table class="table"> 
+                    <tr> 
+                        <th>序号</th>
+                        <th>参数名称</th>
+                        <th>参数值</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="data.BORROW_TIME" id="v" key='k' >
+                    <tr>
+                        <td>{$k}</td>
+                        <td><input type="text" name='BORROW_TIME[{$key}]' class="input" disabled = disabled value='{$key}'/></td>
+                        <td><input type="text" name='BORROW_TIME[{$key}]' class="input" value='{$v}' /></td>
+                        <td>
+                            <a href="javascript:void(0);" onclick="delxa({$key});">[删除]</a>  
+                        </td>
+                    </tr>
+                    </volist>
+                    
+                </table>
+            </div>
+            <div class="tab-panel padding" id="tab-5">
+                <table class="table"> 
+                    <tr> 
+                        <th>序号</th>
+                        <th>参数名称</th>
+                        <th>参数值</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="data.MONEY_SEARCH" id="v" key='k' >
+                    <tr>
+                        <td>{$k}</td>
+                        <td><input type="text" name='MONEY_SEARCH[{$key}]' class="input" disabled = disabled value='{$key}'/></td>
+                        <td><input type="text" name='MONEY_SEARCH[{$key}]' class="input" value='{$v}' /></td>
+                        <td>
+                            <a href="javascript:void(0);" onclick="delxa({$key});">[删除]</a>  
+                        </td>
+                    </tr>
+                    </volist>
+                    
+                </table>
+            </div>
+            <div class="tab-panel padding" id="tab-6">
+                <table class="table"> 
+                    <tr> 
+                        <th>序号</th>
+                        <th>参数名称</th>
+                        <th>参数值</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name="data.BANK_NAME" id="v" key='k'>
+                    <tr>
+                        <td>{$k}</td>
+                        <td><input type="text" name='BANK_NAME[{$key}]' class="input" disabled = disabled value='{$key}'/></td>
+                        <td><input type="text" name='BANK_NAME[{$key}]' class="input" value='{$v}' /></td>
+                        <td>
+                            <a href="javascript:void(0);" onclick="ZYYTable.remove(this);">[删除]</a>  
+                        </td>
+                    </tr>
+                    </volist>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class='text-center'> <button class="button bg-sub">保存</button></div>
+    </form>
+</div>

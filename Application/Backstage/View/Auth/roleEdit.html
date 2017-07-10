@@ -1,0 +1,54 @@
+<taglib name="html" />
+<div class="padding table-responsive">
+	{:crumbs(10,'列表详细')}
+	<hr />
+	<div class="panel">
+		<div class="panel-head "><h4 class='icon-edit '>编辑/角色</h4></div>
+		<div class="panel-body">
+			<form method="post" action='' class="form-x"  />
+				<input type="hidden" name='id' value='{$role_info.id}' />
+				<table class="table"> 
+					<tr>
+						<td>角色名称:</td>
+						<td class="text-left"><html:input name='title'  class='input width-250 display-inline-block ' ajaxurl='__CONTROLLER__/checkRole'  placeholder="角色名称"  value='{$role_info.title}' datatype='*' /></td>
+					</tr>	
+					<tr> 	
+						<td>角色状态:</td>
+						<td style="text-align:left">
+					
+							<input name="status" type="radio" value=1 <if condition="$role_info.status eq 1 ">  checked="checked" </if> />启用
+							<input name="status" type="radio" value=0 <if condition="$role_info.status eq 0 "> checked="checked" </if> />禁用
+							
+						</td>
+					
+					</tr>
+					<tr>
+						<td colspan="2"><input value="保存" class="button bg-blue" type="submit"></td>
+					</tr>
+
+				</table>
+			</form>	
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript"> 
+	$(function(){
+		$(".form-x").Validform({	
+			tiptype:3,
+			ajaxPost:true,
+			showAllError : true,
+			callback:function(data){
+				if(data.status==1){
+					layer.msg(data.info,{icon:1,time: 2000},function(){
+					layer.closeAll();
+					window.location.href='__CONTROLLER__/role';
+				});	
+				}else{
+					layer.msg(data.info,{icon:2});
+				}
+			}
+		});
+	});
+</script>
+

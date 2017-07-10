@@ -1,0 +1,46 @@
+ <div class="padding table-responsive">
+	{:crumbs($menu_id)}
+    <blockquote class="layui-elem-quote margin">
+        <button class="icon-search-plus button bg-main search-layer" data-url="__ACTION__">搜索</button>
+    </blockquote>
+    <table class="table margin"> 
+        <tr> 
+            <th>ID</th>
+            <th>用户名</th>
+            <th>真实姓名</th>
+            <th>认证手机号</th>
+            <th>所属客服</th>
+            <th>可用余额</th>
+            <th>冻结金额</th>
+            <th>待收金额</th>
+            <th>注册时间</th>        
+        </tr>
+        <volist name="rows" id="v">
+        <tr> 
+            
+            <td>{$v.uid}</td>
+            <td>{$v.user_name}</td>
+            <td>{$v.real_name|default="暂无"}</td>
+            <td>{$v.mobile|default="暂无"}</td>
+            <td>{$v.customer_name|default="暂无"}</td>
+            <td class='text-main'>{$v.account_money|default='0.00'}元</td>
+            <td class='text-dot'>{$v.money_freeze|default='0.00'}元</td>
+            <td class='text-sub'>{$v.money_collect|default='0.00'}元</td>
+            <td>{$v.reg_time|date="Y-m-d H:i",###}</td>
+
+            </tr>
+        </volist>
+    </table>
+    <div class="layui-elem-quote admin-page"> 
+        {$page}
+    </div>
+</div>
+
+<div class="hidden search-layer-html"> 
+    <form method="post"  action='__ACTION__' class="form-x"  >
+        <table class="table padding "> 
+            {$search}
+        </table>
+    </form>
+</div>
+ 

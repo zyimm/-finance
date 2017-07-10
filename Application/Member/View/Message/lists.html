@@ -1,0 +1,38 @@
+<table class="table"> 
+    <tr>
+        <th><input type="checkbox" /></th>
+        <th>序号</th>
+        <th><i class="iconfont text-sub">&#xe84e;</i></th>
+        <th>发件人</th>
+        <th>内容</th>
+        <th>接收时间</th>
+    </tr>
+    <volist name="lists" id='list'> 
+    <tr>
+        <td><input type="checkbox" value={$list.id} /></td>
+        <td>{$list.id}</td>
+        <td>
+            <if condition="$list['status'] == 1">
+            <i class="iconfont text-sub" id='msg-{$list.id}'>&#xe84e;</i>
+            <else />
+            <i class="iconfont text-sub" id='msg-{$list.id}'>&#xe661;</i>
+            </if>
+            
+        </td>
+        <td class='text-dot'>
+            系统消息
+        </td>
+        
+        <td> 
+            <span id='msg-span-{$list.id}' class='pointer <if condition="$list['status'] == 1">text-main  <else /> text-gray </if>'  onclick='Member.showMessage({$list.id},"{$list.msg}","__CONTROLLER__/read")'>{$list.title}</span>
+        </td>
+        <td>{$list.send_time|date='Y-m-d H:i:s',###}</td>
+    </tr>
+    </volist>
+    <tr> 
+        <td colspan = 6>
+            {$page}
+        </td>
+    </tr>
+</table> 
+

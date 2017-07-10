@@ -1,0 +1,172 @@
+<style type="text/css"> 
+   .form label { display:inline-block; width:140px;} 
+</style>
+<script type="text/javascript" src='__STATIC__/B/Js/Validform.min.js'></script>
+<script type="text/javascript" src='__STATIC__/H/Js/borrow.js'></script>
+<tagLib name="html" />
+<form action="">
+<html:select id="_day_option" options="borrow_day_time" style="display:none"/>
+<html:select id="_month_option" options="borrow_month_time" style="display:none"/>
+<div id="borrow_reward" class='hidden'>
+    <label for="">按投标金额比例奖励</label>
+    <html:input name='borrow_reward'  class='input display-inline-block' type='number' style='width:180px' value='' datatype='n1-4' />%
+
+</div>
+
+<div id="moneycollect" class='hidden'>
+         
+    <label for="">待收金额设置</label>
+    <html:input name='moneycollect'  class='input display-inline-block' type='number' style='width:180px' value='' datatype='n1-6' />元
+
+</div>
+</form>
+<div class="container">
+    <blockquote class="layui-elem-quote">您正在发布：{$BORROW_TYPE[$borrow_type]} </blockquote>
+    
+    <form method="post" action="__URL__/save"  class="form form-x"  >
+        <input type="hidden" name="vkey" value="{$vkey}" />
+      
+        <fieldset class="layui-elem-field ">
+          <legend><h2>借款信息</h2></legend>
+          <div class="layui-field-box">
+                <div class="line"> 
+                    <div class="x5 padding">
+                         <label for="">借贷总金额：</label>
+                        <html:input name='borrow_money'  class='input display-inline-block' type='number' style='width:180px' value='' datatype='n1-6' />
+                    </div>
+                    <div class="x5 padding">
+                        <label for="">借款年利率：</label>
+                        <html:input name='borrow_interest_rate'  class='input display-inline-block'  placeholder='利率范围:{$rate_lixt[0]}%-{$rate_lixt[1]}%' type='number' style='width:180px' value='' datatype='*' />%
+                    </div>
+                    
+                    <div class="x5 padding">
+                        <label for="">借款的用途：</label>
+                        <html:select  name='borrow_use'  style='width:180px' class='input display-inline-block'  options='borrow_use'/>	
+                    </div>
+                    <div class="x5 padding">
+                        <label for="">借款的期限：</label>
+                        <if condition="$second eq 'yes'">
+                            <div class='text-dot display-inline-block'>标满自动还款</div>
+                        <else/>
+                            <html:select  name='borrow_duration'  style='width:180px' class='input display-inline-block'  options='borrow_month_time'/>	
+                            <input type="checkbox" name="is_day"   value="1" onclick="Borrow.checkDay()" title="按天还款注意利率为 '日利率',如 '日利率为1%' 则100元借1天利息1元，借两天利息2元" />
+                            按天
+                        </if>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="x5 padding">
+                        <label for="">最低投标金额：</label>
+                        <html:select  name='borrow_min'  style='width:180px' class='input display-inline-block'  options='borrow_min'/>	
+                    </div>
+                    <div class="x5 padding">
+                        <label for="">最多投标总额：</label>
+                        <html:select  name='borrow_max'  style='width:180px' class='input display-inline-block'  options='borrow_max'/>	
+
+                    </div>
+                    
+                    <div class="x5 padding">
+                        <label for="">有效时间：</label>
+                        <html:select  name='borrow_time'  style='width:180px' class='input display-inline-block'  options='borrow_time'/>	
+                    </div>
+                    <div class="x5 padding">
+                        <label for="">还款方式：</label>
+                        <if condition="$second eq 'yes'">
+                            <div class='text-dot display-inline-block'>标满自动还款</div>
+                        <else/>
+                        <html:select  name='repayment_type'  style='width:180px' class='input display-inline-block'  options='repayment_type'/>	
+                        </if>	
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="x5 padding">
+                        <label for="">是否有投标奖励：</label>
+                        <input type="checkbox" name="is_reward_type"  value="1" onclick='Borrow.isReward()' />
+                    </div>
+                    <div class="x5 padding is_reward" >
+                    
+                    </div>
+                    <div class="clearfix"></div>
+                     <div class="x5 padding">
+                        <label for="">是否有投标待收限制：</label>
+                        <input type="checkbox" name="is_moneycollect_type"  value="1" onclick='Borrow.isCollect()' />
+                    </div>
+                    <div class="x5 padding is_moneycollect" >
+                   
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+          </div>
+        </fieldset>
+        
+        <fieldset class="layui-elem-field">
+          <legend>借款的详细说明</legend>
+          <div class="layui-field-box">
+            <div class="padding">
+                <label for="">借款标题:</label>
+                <html:input name='borrow_name'  class='input display-inline-block' style='width:400px'  type='text'  value='' datatype='*6-48' />
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="padding">
+                <label for=""> 是否定向标: <input type="checkbox" name="is_pass"  value="1" onclick='Borrow.isPass()'/></label>
+                <html:input name="password"  type='password' class='input display-inline-block'  disabled='disabled'  style='width:180px;display:none' value='' datatype='s6-8' />
+
+            </div>
+            <div class="clearfix"></div>
+            <textarea id="borrow_info" name='borrow_info'  style="display: none;"></textarea>
+          </div>
+        </fieldset>
+        <div class="text-center padding margin"> 
+            <button class="button bg-sub" type='submit'>确认发布</button>
+            
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var layer;
+    layui.use('layer', function(){
+      layer = layui.layer;
+
+    });              
+ 
+	$(function(){
+		$(".form-x").Validform({	
+			tiptype:3,
+			ajaxPost:true,
+			showAllError : true,
+			callback:function(data){
+				if(data.status==1){
+					layer.msg(data.info,{time: 3000,icon:1},function(){
+						layer.closeAll();
+						window.location.href='__CONTROLLER__/index.html';
+					});	
+				}else{
+					layer.msg(data.info,{icon:2});
+				}
+			}
+		});
+	});
+    
+    layui.use('layedit', function(){
+      var layedit = layui.layedit;
+      layedit.build('borrow_info',{
+        tool: [
+          'strong' //加粗
+          ,'italic' //斜体
+          ,'underline' //下划线
+          ,'del' //删除线
+          
+          ,'|' //分割线
+          
+          ,'left' //左对齐
+          ,'center' //居中对齐
+          ,'right' //右对齐
+          ,'link' //超链接
+          ,'unlink' //清除链接
+        ]
+      }); //建立编辑器
+    });
+    
+    var html = $("select[name=repayment_type]").html();
+</script>

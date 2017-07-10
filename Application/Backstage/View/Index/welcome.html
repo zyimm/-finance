@@ -1,0 +1,93 @@
+ <script type="text/javascript" src='__STATIC__Lib/highcharts/highcharts.js'></script>
+ <div class="line padding welcome" > 
+    <div class="border radius margin padding"> 
+         <div class="xm2 xb2 text-center">
+            <i class="iconfont text-main">&#xe604;</i>
+            <p>等待初审的标[<b class="text-dot">0</b>]个 </p>
+         </div>
+         <div class="xm2 xb2 text-center">
+            <i class="iconfont text-dot">&#xe61a;</i>
+            <p>等待复审的标[<b class="text-dot">0</b>]个 </p>
+         </div>
+         <div class="xm2 xb2 text-center">
+            
+            <i class="iconfont text-green">&#xe609;</i>
+            <p>等待审核提现[<b class="text-dot">0</b>]个</p>
+         </div>
+         <div class="xm2 xb2 text-center">
+            <i class="iconfont text-sub">&#xe60c;</i>
+            <p>等待额度申请[<b class="text-dot">0</b>]个</p>
+         </div>
+         <div class="xm2 xb2 text-center">
+            <i class="iconfont text-yellow">&#xe60f;</i>
+            <p>等待实名认证[<b class="text-dot">0</b>]个</p>
+         </div>
+         <div class="xm2 xb2 text-center">
+            <i class="iconfont text-yellow-light">&#xe620;</i>
+            <p>等待VIP认证[<b class="text-dot">0</b>]个</p>
+         </div>
+         <div class="clearfix"></div>
+    </div>
+    <blockquote class="layui-elem-quote margin">
+        最近一周等待还款统计
+    </blockquote>
+    <div class="radius overflow padding" id='statistics-week-repay'> 
+        
+    </div>
+    <blockquote class="layui-elem-quote margin">
+        最近一周充值记录统计
+    </blockquote>
+    <div class="radius overflow padding" id='statistics-week-charge'> 
+        
+    </div>
+    <blockquote class="layui-elem-quote margin">
+        当前系统运行状态
+    </blockquote>
+    <table class="table xb6"> 
+        <tr>
+        	<td>操作系统</td>
+        	<td>{$system.os}</td>
+        </tr>
+        <tr>
+        	<td>程序版本</td>
+        	<td>{$system.app_ver}</td>
+        </tr>
+        <tr>
+        	<td>运行环境</td>
+        	<td>{$system.run_time}</td>
+        </tr>
+        <tr>
+        	<td>PHP版本</td>
+        	<td>{$system.php_ver}</td>
+        </tr>
+        <tr>
+        	<td>MYSQL版本</td>
+        	<td>{$system.mysql_ver}</td>
+        </tr>
+        <tr>
+        	<td>POST最大限制</td>
+        	<td>{$system.max_post}</td>
+        </tr>
+        <tr>
+        	<td>执行时间限制</td>
+        	<td>{$system.max_execution_time}(秒)</td>
+        </tr>
+        <tr>
+        	<td>服务器标识</td>
+        	<td>{$system.server_name}</td>
+        </tr>
+        <tr>
+        	<td>磁盘使用</td>
+        	<td>{$system.disk_has}/{$system.disk_total}(GB)</td>
+        </tr>
+        
+    </table>
+ </div>
+ 
+ <script type="text/javascript"> 
+ 
+
+    var chart = new Highcharts.Chart('statistics-week-repay',{$week_json});
+    var chartCharge = new Highcharts.Chart('statistics-week-charge',{$week_charge_json});
+
+ </script>

@@ -1,0 +1,87 @@
+
+<style type="text/css"> 
+.table td, .table th {
+    text-align: left;
+    vertical-align: middle;
+}
+</style>
+<div class="tab">
+	<div class="tab-head">
+		<ul class="tab-nav">
+			<li class="active">
+			<a href="#tab-start">会员资料</a>
+			</li>
+			<li>
+			<a href="#tab-css">帐户资金</a>
+			</li>
+			<li><a href="#tab-units">借款投资</a></li>
+		</ul>
+	</div>
+	<div class="tab-body">
+		<div class="tab-panel active padding" id="tab-start">
+			<table class='table '> 
+                <tr> 
+                    <td><span class="text-blue">用户名：</span>{$data.info.user_name}</td>
+                    <td><span class="text-blue">认证情况：{$data.info.verify}</span></td>
+                </tr>
+                <tr> 
+                    <td><span class="text-blue">未冻结：</span><if condition="$data[info]['deny'] eq 0">未冻结<else /><b class="text-dot">已冻结</b></if></td>
+                    <td><span class="text-blue">客户类型：</span>{$data.info.user_type_name}</td>
+                </tr>
+                <tr> 
+                    <td><span class="text-blue">所属客服：</span>{$data.info.customer_name|default='未指定'}</td>
+                    <td><span class="text-blue">真实姓名：</span>{$data.info.real_name}</td>
+                </tr>
+                <tr> 
+                    <td><span class="text-blue">性别：</span>{$data.info.sex|default='未知'}</td>
+                    <td><span class="text-blue">职业：</span>{$data.info.profession|default='未知'}</td>
+                </tr>
+                <tr> 
+                    <td><span class="text-blue">手机号码：</span>{$data.info.mobile|default='未认证'}</td>
+                    <td><span class="text-blue">年龄：</span>{$data.info.age|default='未知'}</td>
+                </tr>
+                
+                <tr> 
+                    <td><span class="text-blue">婚姻状况：</span>{$data.info.marry|default='未知'}</td>
+                    <td><span class="text-blue">学历：</span>{$data.info.education|default='未知'}</td>
+                </tr>
+                
+                <tr> 
+                    <td><span class="text-blue">身份证号：</span>{$data.info.id_card|default='未实名认证'}</td>
+                    <td><span class="text-blue">月收入：</span>{$data.info.income|default='未知'}</td>
+                </tr>
+                
+                <tr> 
+                    <td><span class="text-blue">银行帐号：</span>{$data.info.bank_num|default='未实名认证'}</td>
+                    <td><span class="text-blue">银行名称：</span>{$data.info.bank_name|default='未知'}</td>
+                </tr>
+                
+                <tr> 
+                    <td colspan = 2 ><span class="text-blue">银行开户行：</span>{$data.info.bank_city|default='未实名认证'}</td>
+                   
+                </tr>
+                
+                 <tr> 
+                    <td colspan = 2><span class="text-blue">籍贯：</span>{$data.info.id_card|default='未实名认证'}</td>
+                   
+                </tr>
+                
+                <tr> 
+                    <td colspan = 2 ><span class="text-blue">身份证：</span></td>
+                   
+                </tr>
+                <tr> 
+                    <td><img src="{$data.info.idcard_images}" alt="暂无图片" width = 80 height = 80 class='padding-left margin-left radius box-shadow' /></td>
+                   
+                </tr>
+                
+            </table>
+		</div>
+		<div class="tab-panel padding" id="tab-css">
+			 ...
+		</div>
+		<div class="tab-panel padding" id="tab-units">
+			 ...
+		</div>
+	</div>
+</div>

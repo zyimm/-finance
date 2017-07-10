@@ -1,0 +1,91 @@
+<if condition="!empty($is_ajax)">
+    <div class="border box-shadow radius padding">
+        <blockquote class="layui-elem-quote radius">
+            <p>(1)请用户尽量填写较大的银行（如农行、工行、建行、中国银行等）， 避免填写那些比较少见的银行（如农村信用社、平安银行、恒丰银行等）。 否则提现资金很容易会被退票。</p>
+            <p>(2)请您填写完整联系方式，以便遇到问题时，工作人员可以及时联系到您。</p> 
+        </blockquote>
+        
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>您当前的银行账号：</td>
+                    <td>******7890</td>
+                </tr>
+                <tr>
+                    <td>您当前的银行名称：</td>
+                    <td>
+                        <select name="bank-name" id="bank-name" >
+                            <option value="">--请选择--</option>
+                            <option value="招商银行">招商银行</option>
+                            <option value="中国银行" selected="selected">中国银行</option>
+                            <option value="中国工商银行">中国工商银行</option>
+                            <option value="中国建设银行">中国建设银行</option>
+                            <option value="中国农业银行">中国农业银行</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>您银行账户户主姓名：</td>
+                    <td>
+                        z**m
+                    </td>
+                </tr>
+                <tr> 
+                    <td>输入您的当前的银行帐号：</td>
+                    <td>
+                        <input class="input" id="txt_oldaccount" placeholder=" 请输入您当前的银行账号" type="text"/>
+                    </td>
+                </tr>			
+                <tr>
+                    <td>输入您新的银行帐号：</td>
+                    <td>
+                        <input class="input" id="txt-account" placeholder="[请再次确认您添加的银行账号]" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>确认您新的银行帐号：</td>
+                    <td>
+                        <input class="input " id="txt_confirmaccount" placeholder="[请再次确认您添加的银行账号]" type="text">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>开户银行所在省份：</td>
+                    <td>
+                        <select name="selectp" id="province" style="width: 110px;" class="selectStyle">
+                          <option value="0">请选择省份 </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>开户银行所在市:</td>
+                    <td>
+                        <select name="selectc" id="city" style="width: 110px;" class="selectStyle">
+                            <option value="0">请选择城市</option>
+                        </select>
+                        <select name="selectc" id="district" style="width: 110px; display:none" class="selectStyle">
+                            <option value="0">请选择地区</option>
+                        </select>
+                     
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        输入开户行支行名称：
+                    </td>
+                    <td class="tdContent">
+                        <input name="txt_bankName" id="txt_bankName" value=""  placeholder="[如不能确定，请拨打开户行的客服热线咨询]" class="input" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <button class="button bg-main" id="btn_set" disabled="disabled">禁止修改 </button>				
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</if> 

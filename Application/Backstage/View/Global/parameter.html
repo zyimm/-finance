@@ -1,0 +1,46 @@
+<div class="padding table-responsive">
+	{:crumbs($menu_id)}
+	<hr />
+    <form method="post"  action='__CONTROLLER__/saveParameter' class="form-x"  enctype="multipart/form-data">
+        <table class="table">
+            <tbody>
+                
+                <volist name="global_list" id="global"> 
+                <tr>
+                    <td class='x3'>{$global.name}</td>
+                    <td class='x9'>
+                        <input type="{$global.type}" name='{$global.code}' class='input float-left'  style='width:360px;' value='{$global.text}' />
+                        <span class="tip float-left margin-left padding-left text-dot x6 text-left">{$global.tip|default='暂无说明'}</span>
+                    </td>                                                                   	
+                </tr>
+                </volist>
+   
+            </tbody>
+        </table>
+        <div style='text-align:center' class="padding">
+			<button class="button button-big" type="submit"><span class="icon-edit text-blue"></span>提交修改</button>
+		</div>
+    </form>
+</div>
+
+<script type="text/javascript"> 
+	$(function(){
+		$(".form-x").Validform({	
+			tiptype:3,
+			ajaxPost:true,
+			showAllError : true,
+			callback:function(data){
+				if(data.status==1){
+					layer.msg(data.info,{time: 3000,icon:1},function(){
+						/*layer.closeAll();
+						window.location.href='__CONTROLLER__/index.html';*/
+                        
+                        layer.msg(data.info,{icon:1});
+					});	
+				}else{
+					layer.msg(data.info,{icon:2});
+				}
+			}
+		});
+	});
+</script>

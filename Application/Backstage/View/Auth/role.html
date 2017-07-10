@@ -1,0 +1,38 @@
+<div class="padding table-responsive">
+	{:crumbs($menu_id,'权限更改')}
+	<hr />
+	<!-- <div class="alert"><a href="__CONTROLLER__/add" class="button bg-main icon-plus-square">&nbsp;新增角色</a></div> -->
+	<table class="table table-hover "> 
+		<tr>
+			<th>序号</th>
+			<th>角色名称</th>
+			<th>角色状态</th>
+			<th>拥有权限(个)</th>
+			<th>操作</th>
+		</tr>
+		<volist name="role_list" id="rl"> 
+		<tr>
+			<td>{$rl.id}</td>
+			<td>{$rl.title}</td>
+			<if condition="$rl.status eq 1 ">
+			<td><b class="text-main">正常</b></td>
+			<else />
+			<td><b class="text-dot">禁用</b></td>
+			</if>
+	
+			<td>{$rl.auth_nums}</td>
+			<td>
+			<if condition="$rl.id eq 1 ">
+				-x-x-x-
+			<else />
+				<a href="__CONTROLLER__/roleEdit?role_id={$rl.id}" class="button bg-blue button-little">修改</a>
+				<a href="__CONTROLLER__/" class="button bg-dot  button-little">禁用</a>
+				<a href="__CONTROLLER__/roleRule?role_id={$rl.id}" class="button bg-green  button-little">权限修改</a>
+			</if>	
+			</td>
+		</tr>
+		</volist>
+		
+	</table>
+	
+</div>

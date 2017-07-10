@@ -1,0 +1,111 @@
+
+<form class="layui-form padding" action="" >
+    <div> 
+        <fieldset class="layui-elem-field layui-field-title x9" >
+            <legend class='text-main'>第一联系人</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <label class="layui-form-label x2">与你关系:</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <select name="quiz1">
+                        <option value="">请选择省</option>
+                        <option value="浙江" selected="">浙江省</option>
+                        <option value="你的工号">江西省</option>
+                        <option value="你最喜欢的老师">福建省</option>
+                    </select>
+                </div>
+            </div>
+            <label for="" class="layui-form-label x2">联系电话:</label>
+            <div class="layui-input-inline"> 
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input layui-form-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div> 
+        <fieldset class="layui-elem-field layui-field-title x9" >
+            <legend class='text-main'>第一联系人</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <label class="layui-form-label x2">与你关系:</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <select name="quiz1">
+                        <option value="">请选择省</option>
+                        <option value="浙江" selected="">浙江省</option>
+                        <option value="你的工号">江西省</option>
+                        <option value="你最喜欢的老师">福建省</option>
+                    </select>
+                </div>
+            </div>
+            <label for="" class="layui-form-label x2">联系电话:</label>
+            <div class="layui-input-inline"> 
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input layui-form-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div> 
+        <fieldset class="layui-elem-field layui-field-title x9" >
+            <legend class='text-main'>第一联系人</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <label class="layui-form-label x2">与你关系:</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <select name="quiz1">
+                        <option value="">请选择省</option>
+                        <option value="浙江" selected="">浙江省</option>
+                        <option value="你的工号">江西省</option>
+                        <option value="你最喜欢的老师">福建省</option>
+                    </select>
+                </div>
+            </div>
+            <label for="" class="layui-form-label x2">联系电话:</label>
+            <div class="layui-input-inline"> 
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input layui-form-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="x3"></div>
+        <div class="layui-input-block   x4 ">
+          <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script>
+layui.use(['form'], function(){
+  var form = layui.form();
+  //
+  form.render();
+
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  }); 
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return false;
+  });
+  
+  
+});
+</script>

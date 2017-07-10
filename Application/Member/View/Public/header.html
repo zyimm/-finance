@@ -1,0 +1,141 @@
+<include file="Front@Public/header"  />
+<script type="text/javascript" src="__STATIC__M/Js/Member.js"></script>
+<style type="text/css"> 
+.layui-nav{background-color:#fff;color:#000;}
+.layui-nav dd{padding:0px;}
+.layui-nav-tree .layui-nav-bar{background-color:#0C4A78;}
+.layui-nav .layui-nav-item a{ color:#000;}
+.layui-nav-tree .layui-nav-item a:hover {
+    background-color: #F5F5F5;
+	color: #f00;
+}
+.layui-nav-itemed > a{background-color: #0ae!important;}
+.layui-tab-brief > .layui-tab-title .layui-this {
+    color: #0C4A78;
+}
+.layui-tab-brief > .layui-tab-title .layui-this::after{border-bottom: 3px solid #4393CC;}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-this{background-color: #ccc;}
+.layui-nav-tree .layui-this > a{background-color: #f5;}
+.layui-nav-child .active >a {color: #f00;}
+.layui-nav .iconfont{font-size:18px;}
+.layui-input-block{margin-left:0px;}
+.layui-elem-field legend{ font-size:16px; }
+.member-index-gross-income p{padding-top:48px;}
+
+.member-index-gross-income p>i{font-size:68px!important;}
+.member-index-verify{margin-top:32px;}
+.member-index-verify a{font-size:32px!important;}
+.member-index-verify-1{border-bottom:1px solid #ccc; border-right:1px solid #ccc; margin-top: 8px; padding-bottom:8px;}
+.member-index-verify-2{border-bottom:1px solid #ccc;  margin-top: 8px; padding-bottom:8px;}
+.member-index-verify-3{border-right:1px solid #ccc; padding-top:8px;}
+.member-index-verify-4{ padding-top:12px;}
+.member-index-pay{margin-top:40px;}
+
+.member-index-bar{float: left;
+width: 918px;
+height: 35px;
+border-bottom: 3px solid #e0e0e0;}
+.member-index-bar> span {
+    float: left;
+    border-bottom: 3px solid #808080;
+    height: 35px;
+    font-size: 18px;
+    font-weight: bold;
+}
+</style>
+<div class="container margin-top margin-bottom" id='member'>
+	<div class="line"> 
+		<ul class="layui-nav layui-nav-tree x2" lay-filter="left-menu" >
+		<volist name="menu" id="menu_list">
+			<li class="layui-nav-item <if condition="in_array($now_controller,$menu_list['maps'])">layui-nav-itemed</if>" >
+				<if condition="!empty($menu_list['url'])">
+					<a href="{$menu_list['url']}"><i class="iconfont {$menu_list['icon']}"></i>{$key}</a>
+				<else />
+					<a href="javascript:;"><i class="iconfont margin-right">{$menu_list['icon']}</i>{$key}</a>
+				</if>
+				<if condition="!empty($menu_list['list'])">
+				<dl class="layui-nav-child">
+				<volist name="menu_list.list" id="menu_children_list">
+					<dd class="<if condition="in_array($now_action,$menu_children_list['maps'])"> active </if>">
+                        <a href="{$menu_children_list['url']}">{$key}</a>
+                    </dd>
+				</volist> 	 
+				</dl>
+				</if>
+		  </li>
+		</volist>
+		</ul>
+		<div id="main-content" class='x10 padding-left'> 	
+			<div class="layui-tab layui-tab-brief" lay-filter="right-menu">
+              <if condition="!empty($children_menu)">
+			  <ul class="layui-tab-title">
+			  <volist name="children_menu" id='right_menu' key='key_num' >
+				<li data-url="{$right_menu['url']}" class="<if condition="$key_num == 1"> layui-this </if>" >{$key}</li>
+			  </volist>
+			  </ul>
+			  </if>
+			  <div class="layui-tab-content table-responsive" id='ajax-content'></div>
+			</div> 	     
+		</div>
+	</div>
+	
+</div>
+<script>
+
+
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+    var element = layui.element();
+    element.on('tab(right-menu)',function(data){
+        loadTabData($(this).attr('data-url'));
+        //loadTabData(1);
+    });
+  
+});
+var layer;
+layui.use('layer',function(){
+    layer = layui.layer;
+});
+var loadTabData = function(url){
+	$.ajax({
+            url:url,
+            type:'post',
+            data:{},
+            dataType:'json',
+            success:function (result,status,xhr){
+                layer.msg('努力加载中:-)...', {
+                  icon: 16
+                  ,shade: 0.1,
+                  offset: ['200px'],
+                  time:400
+                },function(){
+                    $('#ajax-content').html(result.html);                          
+                });
+                     
+            },
+            error:function(result,status,xhr){
+               console.log(status);
+                
+            },
+            async:true,
+            timeout:10000   
+        });
+          
+};
+$(function(){
+	//
+    var loadUrl = '';
+    var num = {:I('get.href',0)};
+    var patrn = /^[1-9]$/;
+    if(patrn.test(num)){
+        num-=1;
+        loadUrl = $('.layui-tab-title>li').eq(num).attr('data-url');
+        $('.layui-tab-title>li').eq(num).addClass('layui-this').siblings('li').removeClass('layui-this');
+    }else{
+        loadUrl = $('.layui-tab-title>li').eq(0).attr('data-url');
+    }
+    
+    loadTabData(loadUrl);
+ 
+});
+</script>

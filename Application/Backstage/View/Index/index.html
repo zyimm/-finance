@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="renderer" content="webkit">
+	<title>Finance Plus|后台管理中心</title>
+    <link rel="stylesheet" href="__STATIC__Lib/front/iconfont.css" />
+	<link rel="stylesheet" href="__STATIC__C/Css/pintuer.css" />
+	<link rel="stylesheet" href="__STATIC__B/Css/admin.css" />	
+</head>
+<body>
+	<div class="layout admin-top">
+		<!-- header-logo -->
+		<div class="admin-logo  padding float-left">
+			<a class="text-large " href="/Backstage">
+                <span><b><span class="open" style="color: #a5aeb4;">Finance</span>
+				<span class="cmf" style="color: #3fa9f5;">Plus</span></b></span>
+            </a>
+		</div>
+		<!-- admin-top-memu -->
+		<div class="line"> 
+            <div class="admin-top-memu xm7 xb7"> 
+                <ul class="line"> 
+                <volist name="category_level_first" id="clf">
+                    <li class='float-left' rel='{$clf.id}'><a href='javascript:void(0)' onclick="switchMenu({$clf.id},this)"  >
+                        <i class="iconfont padding-small-right">{$clf.icon}</i><span>{$clf.name}</span></a>
+                    </li>
+                </volist>	
+                </ul>
+            </div>
+            
+            <div class="admin-top-memu  float-right"> 
+                <ul class="line"> 
+                    <li class='float-left'><a href="/" target='_blank' ><i class="icon-home padding-small-right"></i><span>查看前台</span></a></li>
+                    <li class='float-left'><a href="/admin/login/loginout.html" ><i class="icon-sign-out padding-small-right"></i><span>退出</span></a></li>
+                    <li class='float-left'><a href="javascript:clearCache('/admin/index/clearCache.html');" ><i class="icon-trash-o padding-small-right"></i><span>清空缓存</span></a></li>
+                    <li class='float-left'>
+                        <a href="javascript:void(0)" title='{$admin_info.user_name}[{$admin_info.role_name}]'>
+                            <i class="icon-user padding-small-right"></i>
+                            <span>{:mb_strcut($admin_info['user_name'],0,4,'utf-8')}...[{$admin_info.role_name}]</span>
+                        </a>
+                    </li>
+                    <li class="clearfix"></li>
+                </ul>
+            </div>
+            
+             <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+	</div>
+	<div class="layout"> 
+		<!-- sidebar -->
+		<div class="sidebar">
+			<volist name="category_level_second" id="cls" key='k'>
+			<div class="sidebar-tab-{$k} hidden"> 
+				<volist name="cls" id="clss"> 
+				<ul class="admin-side-memu "> 
+					<li>
+						<a href="javascript:void(0)" class='display-block admin-side-memu-a'> 
+							<i class="icon-folder-open-o"></i>
+							<span class="nav-label">{$clss.name}</span>
+							<span class="icon-angle-left float-right" style="color:#777;"></span>
+						</a>
+						<ul class='admin-side-memu-ul' >
+						<volist name="clss.children" id="clsss"> 
+							<li><a href='javascript:void(0)' onclick="toFrame('/Backstage/{$clsss.url}',this)" class="display-block padding-small">
+							<i class='iconfont padding-small-right text-big'><b>{$clsss.icon}</b></i><span>{$clsss.name}</span></a></li>
+						</volist>
+						</ul>	
+					</li>
+				</ul>
+				</volist>
+				
+			</div>
+		</volist>
+		</div>
+		<div class="admin-main"> 
+			<iframe  id='MainIframe' name="MainIframe" class="iframe" src="{:U('/Backstage/Index/welcome')}" style="width: 100%;height: 100%;border: 0;"></iframe>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+    <script type="text/javascript" src ='__STATIC__C/Js/jquery.js'></script>
+    <script type="text/javascript" src ='__STATIC__C/Js/pintuer.js'></script>
+    <script type="text/javascript" src ='__STATIC__Lib/layui/layui.js'></script>
+    <script type="text/javascript" src ='__STATIC__C/Js/common.js'></script>    
+	<script type="text/javascript">  
+		//console.log($('.admin-side-memu'));
+		var layer;
+        layui.use('layer',function(){
+            layer = layui.layer;
+        });
+		$(function(){
+			$('.sidebar').children('div').eq(0).removeClass('hidden');
+		
+			$('.admin-side-memu-a').click(function(){
+				if ($(this).children('span.float-right').hasClass("icon-angle-left")){
+					$(this).children('span.float-right').removeClass('icon-angle-left').addClass('icon-angle-down');
+				}else{
+					$(this).children('span.float-right').removeClass('icon-angle-down').addClass('icon-angle-left');
+				}
+
+				$(this).next('ul.admin-side-memu-ul').slideToggle(400);
+			});
+			 
+		});
+		/*清楚缓存*/
+		var clearCache=function(url){
+			//layer.open(3,{shade: [0.8, '#393D49'],closeBtn:false,time:2000});
+            $.post('{:U('/Backstage/Global/clearCache')}',{},function(data){
+                layer.msg('清空缓存成功啦!√',{icon:16,shade: [0.8, '#393D49'],time:1800});
+            },'json')
+			
+		};
+		//
+		var toFrame=function(url,o){
+			var _this=o;
+			//console.log($(_this).parent('li').parent('ul').parent('li').parent('ul').siblings('ul'));
+			$(_this).parent('li').css('backgroundColor','#eee').siblings('li').css('backgroundColor','#fff');
+			$(_this).parent('li').parent('ul').parent('li').parent('ul').siblings('ul').children('li').children('ul').children('li').css('backgroundColor','#fff');
+			parent.MainIframe.location = url;
+		};
+		/*菜单切换*/
+		var switchMenu=function(id,o){
+			var _this=o;
+			$(_this).children('span').css('color','#fff');
+			//console.log($(_this).parent('li.float-left').siblings('li').children('a').children('span'));
+			$(_this).parent('li.float-left').siblings('li').children('a').children('span').css('color','#777');
+			$('.sidebar-tab-'+id).removeClass('hidden').siblings('div').addClass('hidden');
+		}
+	</script>
+</body>
+</html>
+

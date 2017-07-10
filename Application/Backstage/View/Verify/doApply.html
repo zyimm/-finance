@@ -1,0 +1,41 @@
+<div class="padding table-responsive text-center show-layer">
+    <form action="" class="form-inline">
+    <input type="hidden" name='id' value={$id} />
+        <div class="form-group"> 
+            <div class="label">
+                <label>额度:</label>
+            </div> 
+            <div class="field"> 
+                <input type="number" name='money' class='input' value='{$val}' />
+            </div>
+        </div>
+        <div class="form-group margin-top"> 
+            <div class="label">
+                <label>是否通过:</label>
+            </div> 
+            <div class="field"> 
+                <input name="is_pass" type="radio" value = 1 />同意
+                <input name="is_pass" type="radio" value = 0 />不同意
+            </div>
+        </div>
+        <div class="form-group"> 
+            <div class="label">
+                <label>备注:</label>
+            </div> 
+            <div class="field"> 
+                <input type="text" name='deal_info' class='input' value='' />
+            </div>
+        </div>
+    </form>
+    
+    <div class='margin'> 
+        <button class="button" onclick ="showLayerPost('__CONTROLLER__/saveApply')">确认提交</button>
+    </div>
+
+</div>
+
+
+
+
+
+ 

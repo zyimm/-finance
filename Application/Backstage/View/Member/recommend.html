@@ -1,0 +1,39 @@
+ <div class="padding table-responsive">
+	{:crumbs($menu_id)}
+    <blockquote class="layui-elem-quote margin">
+        <button class="icon-search-plus button bg-main search-layer" data-url="__ACTION__">搜索</button>
+    </blockquote>
+    <table class="table margin"> 
+        <tr> 
+            <th>ID</th>
+            <th>推广人</th>
+            <th>投资人</th>
+            <th>投资总金额</th>
+            <th>投资总笔数</th>
+            
+            
+        </tr>
+        <volist name="rows" id="v">
+        <tr> 
+            
+            <td>{$v.id}</td>
+            <td>{$v.user_name}</td>
+            <td>{$v.real_name|default="未知"}</td>
+            <td>{$v.age|default="暂无"}</td>
+            <td>{$v.sex|default="未知"}</td>
+            </tr>
+        </volist>
+    </table>
+    <div class="layui-elem-quote admin-page"> 
+        {$page}
+    </div>
+</div>
+
+<div class="hidden search-layer-html"> 
+    <form method="post"  action='__ACTION__' class="form-x"  >
+        <table class="table padding "> 
+            {$search}
+        </table>
+    </form>
+</div>
+ </div>   

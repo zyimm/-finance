@@ -1,0 +1,78 @@
+<taglib name="html" />
+<div class="padding table-responsive">
+	{:crumbs($menu_id,'编辑/添加管理员')}
+	<hr />
+	<div class="panel">
+		<div class="panel-head "><h4 class='icon-edit '>编辑/添加管理员</h4></div>
+		<div class="panel-body">
+			<form method="post" action='' class="form-x"  />
+				<input type="hidden" name='id' value='{$admin_data.id}' />
+				<table class="table"> 
+				<if condition="$is_add eq 1 ">
+					<tr>
+						<td>管理员名称:</td>
+						<td style="text-align:left"> 
+							<html:input name='user_name'  class='input width-250 display-inline-block '  placeholder="管理员名称"  value='' datatype='*2-16' /></td>
+						</td>
+					</tr>	
+				<else />
+					<tr>
+						<td>管理员名称:</td>
+						<td style="text-align:left">{$admin_data.user_name}</td>
+					</tr>	
+				</if>
+					<tr>
+						<td>管理员电话:</td>
+						<td style="text-align:left">
+							<html:input name='mobile'  class='input width-250 display-inline-block '  placeholder="管理员电话"  value='{$admin_data.mobile}' datatype='m' /></td>
+						</td>
+					</tr>
+					<tr> 
+						<td>所属角色:</td>
+						<td style="text-align:left">
+							<html:select id='role_id' name='role_id'  selected="admin_info['role_id']"  options='role_list'/>
+						</td>
+					</tr>
+					<tr> 
+						<td>角色密码:</td>
+						<td style="text-align:left">
+							<html:input name='user_pass' type="password" required='no'  class='input width-250 display-inline-block '  placeholder="角色密码！"   /></td>
+						</td>
+					</tr>
+					<tr> 	
+						<td>管理员状态:</td>
+						<td style="text-align:left">
+							<input name="user_status" type="radio" value=1 <if condition="$admin_data.user_status eq 1 "> checked="checked" </if> />启用
+							<input name="user_status" type="radio" value=0 <if condition="$admin_data.user_status eq 0 "> checked="checked" </if> />禁用	
+						</td>
+						
+					</tr>
+					<tr>
+						<td colspan="2"><input value="保存" class="button bg-blue" type="submit"></td>
+					</tr>
+				</table>
+			</form>	
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript"> 
+	$(function(){
+		$(".form-x").Validform({	
+			tiptype:3,
+			ajaxPost:true,
+			showAllError : true,
+			callback:function(data){
+				if(data.status==1){
+					layer.msg(data.info,{icon:1,time: 3000},function(){
+						layer.closeAll();
+						window.location.href='__CONTROLLER__/user';
+					});	
+				}else{
+					layer.msg(data.info,{icon:2});
+				}
+			}
+		});
+	});
+</script>
+

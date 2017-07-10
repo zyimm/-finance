@@ -1,0 +1,38 @@
+<div class="padding table-responsive">
+	{:crumbs($menu_id)}
+	<hr />
+    <blockquote class="layui-elem-quote margin">
+        <button class="icon-search-plus button bg-main search-layer" data-url="__ACTION__">搜索</button>
+    </blockquote>
+    <table class="table margin"> 
+        <tr> 
+            <th>LOG-ID</th>
+            <th>操作者</th>
+            <th>操作类型</th>
+            <th>操作时间</th>
+            <th>操作者IP</th>
+            <th>备注信息</th>
+        </tr>
+        <volist name="rows" id="v">
+        <tr> 
+            <td>{$v.id}</td>
+            <td>{$v.deal_user}</td>
+            <td>{$v.log_type}</td>
+            <td>{$v.deal_time|date='Y-m-d H:i:s',###}</td>
+            <td>{$v.deal_ip}</td>
+            <td>{$v.deal_info}</td>
+        </tr>
+        </volist>
+    </table>
+    <div class="layui-elem-quote admin-page"> 
+        {$page}
+    </div>
+</div>
+
+<div class="hidden search-layer-html"> 
+    <form method="post"  action='__ACTION__' class="form-x"  >
+        <table class="table padding "> 
+            {$search}
+        </table>
+    </form>
+</div>

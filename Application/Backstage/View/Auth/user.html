@@ -1,0 +1,49 @@
+<div class="padding table-responsive">
+	{:crumbs($menu_id)}
+    <hr />
+	<!-- <div class="alert"><a href="__CONTROLLER__/addAdmin" class="button bg-main icon-plus-square">&nbsp;新增平台管理员</a></div> -->
+	<table class="table"> 
+		<tr>
+			<th>序号</th>
+			<th>管理员名称</th>
+			<th>真实姓名</th>
+			<th>所属角色</th>
+			<th>是否是客服</th>
+			<th>电话</th>
+			<th>状态</th>
+			<th>上一次登录时间</th>
+			<th>上一次登录IP</th>
+			<th>操作</th>
+		</tr>
+		<volist name="admin_list" id="al"> 
+		<tr>
+			<td>{$al.id}</td>
+			<td>{$al.user_name}</td>
+			<td>{$al.real_name|default='暂无'}</td>
+			<td>{$al.role_name}</td>	
+            <if condition="$al.is_service eq 1 ">
+			<td>是</td>
+			<else />
+			<td>否</td>
+			</if>
+            <td>{$al.mobile|default='暂无'}</td>
+            <if condition="$al.user_status eq 1 ">
+			<td class='text-main'>正常</td>
+			<else />
+			<td class='text-dot'>禁止</td>
+			</if>
+			<td>{$al.last_log_time|date='Y-m-d H:i:s',###}</td>
+            <td>{$al.last_log_ip|default='暂无'}</td>
+			<td>
+			<if condition="$al.role_id eq 1 ">
+				-x-x-x-
+			<else />
+				
+				<a href="__CONTROLLER__/userEdit?id={$al.id}" class="button bg-blue button-little">修改</a>
+				<a href="__CONTROLLER__/userDelete" class="button bg-dot  button-little">删除</a>
+			</if>			
+		
+			</td>
+		</tr>
+		</volist>
+</div>    

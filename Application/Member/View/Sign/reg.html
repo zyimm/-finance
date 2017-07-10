@@ -1,0 +1,92 @@
+<include file="Front@Public/_header_"  />
+<title>网站登录</title>
+</head>
+<body>
+<script type="text/javascript">
+	var html = [
+			"<div class=\"container\" style='width:680px;'> ",
+			"		<div class=\"text-center margin-top\"> ",
+			"			<!--<img src=\"__LOGO__\" alt=\"\" />-->",
+			"		</div>",
+			"		<div class=\"alert alert-yellow\">",
+			"			",
+			"			<strong>亲爱的游客：</strong>欢迎注册本网站。",
+			"		</div>",
+			"		<form method=\"post\" class=\"form-x  padding\" onsubmit=\"return false;\" style=\'width:\'>",
+			"			<div class=\"form-group\">",
+			"				<div class=\"label\">",
+			"					<label for=\"username\">账号</label>",
+			"				</div>",
+			"				<div class=\"field\">",
+			"					<input class=\"input\" id=\"user_name\" required=\"required\" name=\"user_name\" size=\"30\" placeholder=\"手机/邮箱/账号\" type=\"text\">",
+			"					<div class=\"input-note\">登录账号包含手机、邮箱和会员号。</div>",
+			"				</div>",
+			"			</div>",
+			"			",
+			"			<div class=\"form-group\">",
+			"				<div class=\"label\">",
+			"					<label for=\"password\">密码</label>",
+			"				</div>",
+			"				<div class=\"field\">",
+			"					<input class=\"input\" id=\"password\"  required=\"required\" name=\"password\" size=\"30\" placeholder=\"请输入密码\" type=\"password\">",
+			"					<div class=\"input-note\">登录会员的密码口令。</div>",
+			"				</div>",
+			"			</div> ",
+			"			<div class=\"form-group\">",
+			"				<div class=\"label\">",
+			"					<label for=\"code\">验证码</label>",
+			"				</div>",
+			"				<div class=\"field\">",
+			"					<input class=\"input\" id=\"code\"  required=\"required\" style='display:inline-block;width:auto' name=\"code\" size=\"18\" placeholder=\"请输入验证码\" type=\"text\">",
+			"					<img onclick=\"this.src=this.src+\'?t=\'+Math.random()\" width=140 height=40 id=\"imVcode\" alt=\"点击换一个校验码\" src=\"verify.html\">",
+			"				</div>",
+			"			</div>",
+			"			",
+			"			<div class=\"form-button\">",
+			"				<button class=\"button submit-form \" type=\"submit\" onclick = 'sign()' ><span class='text-sub icon-paw'></span>确认登录</button>",
+			"			</div>", "		</form>", "	</div>" ].join("");
+	//页面层
+	//console.log(html);
+	var layer;
+	layui.use('layer', function() {
+		layer = layui.layer;
+		layer.open({
+			type : 1,
+			title : false,
+			closeBtn : 0, //不显示关闭按钮
+			shade : .5,
+			area : [ '700px', '460px' ],
+			//time: 2000, //2秒后自动关闭
+			shift : 2,
+			content : html
+		});
+	});
+
+	var sign = function(){
+		$.ajax({
+            url : "{:U('__CONTROLLER__/in')}",
+            type : 'post',
+            dataType : 'json',
+            data : {
+                'user_name' : $('#user_name').val(),
+                'password' : $('#password').val(),
+                'code' : $('#code').val()
+            },
+            timeout : 5000,
+            cache : false,
+            success : function(d) {
+                if (d) {
+                    if (d.status == 0) {
+                        layer.msg(d.info, {
+                            icon : 5
+                        });
+                    } else {
+                        window.location.href = "{:U('/member/index')}";
+                    }
+                }
+            }
+		});    
+	};
+</script>
+</body>
+</html>

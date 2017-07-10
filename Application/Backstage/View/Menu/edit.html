@@ -1,0 +1,56 @@
+ <div class="padding table-responsive">
+	{:crumbs($menu_id,'列表')}
+    <blockquote class="layui-elem-quote margin">
+        <button class="icon-search-plus button bg-main search-layer" data-url="__ACTION__">搜索</button>
+    </blockquote>
+    <table class="table margin"> 
+        <tr> 
+            <th>ID</th>
+            <th>文章标题</th>
+            <th>所属栏目</th>
+            <th>所属顺序</th>
+            <th>发布人</th>
+            <th>添加时间</th>
+            <th>操作</th>
+            
+        </tr>
+        <volist name="rows" id="v" empty="$empty">
+        <tr> 
+            
+            <td>{$v.id}</td>
+            <td>{$v.title}</td>
+            <td>{$v.type_name|default="暂无"}</td>
+            <td>{$v.sort_order|default=0}</td>
+            <td>{$v.art_write|default="暂无"}</td>
+            <td>{$v.add_time|date="Y-m-d H:i",###}</td>
+            <td>
+                <a href="" class='text-dot'>[编辑]</a>
+                <a href="" class='text-dot'>[删除]</a>
+            </td>
+         </tr>
+        </volist>
+    </table>
+    <div class="layui-elem-quote admin-page"> 
+        {$page}
+    </div>
+</div>
+
+<div class="hidden search-layer-html"> 
+    <form method="post"  action='__ACTION__' class="form-x"  >
+        <table class="table padding "> 
+            {$search}
+        </table>
+    </form>
+</div>  
+
+<script type="text/javascript"> 
+    var firstDeal = function(){
+    
+    };
+    
+    var secondDeal = function(){
+    
+    };
+
+
+</script>

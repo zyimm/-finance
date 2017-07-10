@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+</head>
+<body>
+<div style="display:none" id="listTable_url">/index_new.php/Home/ProduceAccident</div>
+<h1 style="font-size:12px;">
+<span ><a href="/index_new.php">首页</a>  - 生产事故提交     </span>
+</h1>
+
+<link href="/Public/Css/../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css"> 
+	.border{ border:#ccc 1px solid}
+	.margin-top-25{ margin-top:25px;}
+	.margin-bottom-25{ margin-bottom:25px;}
+	.padding{ padding:12px; }
+	.padding-top{ padding-top:12px; }
+	.padding-bottom{ padding-bottom:12px; }
+	.question_desc_item label{ color: #999;}
+	.thumb-img{ width:200px;height:200px; float:left;margin-right:10px;position:relative; }
+	.thumb-img-close{ cursor:pointer;text-align:center;line-height:18px;font-weight:700; border:#000 1px solid;color:#f00; width:18px;height:18px;right: 0px;top: 0px;position: absolute; }
+</style>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/Public/bootstrap/js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/Public/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.min.js"></script>
+
+<div class='container-fluid'> 
+	<form class="form " method='post' action='/index_new.php/Home/ProduceAccident/add' id='from-submit' > 
+		
+		<input type="hidden" name="order_id" value=3859 />
+		
+		<div class='col-xs-12'> 
+			<h2 class='col-xs-4'><b>订单编号：</b>3859</h2>
+			<h2 class='col-xs-4'><b>SKU：</b>Suits1270302</h2>
+			<h2 class='col-xs-4'><b>事故阶段：</b>订料中</h2>
+		</div>
+		<div class="col-md-10"> 
+			<div class="form-group"> 
+				<label for="channel" class="col-md-2 control-label">
+                    <h4><span class="text-danger ">*</span>反馈渠道:</h4>
+                 </label>
+				<div class="col-md-8"> 
+					<h4> 
+						<label class="checkbox-inline">
+							<input name="channel" checked="checked" value=1 type="radio">内部<span id="department-show">(南京部)</span>
+						</label>
+                        <label class="checkbox-inline">
+                            <input name="channel" value=2 type="radio">供应商
+                        </label>
+					</h4>
+				 </div>
+				<div class="col-md-12 text-center border"> 
+					<h4> 
+						<span class="text-danger ">*</span>问题类型
+					</h4>
+	
+				</div>
+				<div class="col-md-12 form-group"> 
+					
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='设计问题' name='question_type[1]' value="1" /> 设计问题
+						</label>
+					</div>
+				 	
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='板房问题' name='question_type[2]' value="2" /> 板房问题
+						</label>
+					</div>
+				 	
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='仓库问题' name='question_type[3]' value="3" /> 仓库问题
+						</label>
+					</div>
+				 	
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='采购问题' name='question_type[4]' value="4" /> 采购问题
+						</label>
+					</div>
+				 	
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='二次工艺问题' name='question_type[5]' value="5" /> 二次工艺问题
+						</label>
+					</div>
+				 	
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='供应商问题' name='question_type[6]' value="6" /> 供应商问题
+						</label>
+					</div>
+				 	
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='生产部问题' name='question_type[7]' value="7" /> 生产部问题
+						</label>
+					</div>
+				 	
+					<div class="col-md-3 margin-top-25"> 
+						<label class="checkbox-inline">				  
+							<input type="checkbox" class='question_type' rel='后台资料问题' name='question_type[8]' value="8" /> 后台资料问题
+						</label>
+					</div>
+				 	
+					<div class="clearfix"></div>
+				</div>
+				
+				<div class="col-md-12 text-center form-group border "> 
+					<h4> 
+						<span class="text-danger ">*</span>事故简述
+					</h4>
+	
+				</div>
+				<div class="col-md-12 border form-group " id='question_desc_div' > 
+					
+				</div>
+				<div class="col-md-12 form-group"> 
+					<h2><b>图片（上限2张）：</b></h2>
+					<!--用来存放item-->
+					<div> 
+						<div id="fileList" class="uploader-list"></div>
+						<div class="clearfix"></div>
+						<div id="filePicker" class="btn btn-primary margin-top-25">选择文件</div>
+					</div>
+				</div>
+				<div class="col-md-12  form-group " > 
+					<textarea name="remark" id="remark" cols="30" class='form-control' placeholder='备注(非必填)' rows="10"></textarea>
+				</div>
+				<div class="col-md-12  form-group " > 
+					<div class="col-md-6">
+						<button class="btn btn-default" id='submit'>提交</button>
+						&nbsp;&nbsp;
+						<span class='btn btn-default' id='reset-from' >重置<span/>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</form>
+	
+</div>
+<script src="/Public/layer/layer.js"></script>
+<script type="text/javascript"> 
+	//文件计数
+	var fileNum = 0;
+	var closeThumb =function(o){
+		if(fileNum<=0) return false;
+		var _this = o;
+		//文件id
+		var fileId = $(_this).parent('div.thumb-img').attr('id');
+		$(_this).parent('div.thumb-img').remove();
+		--fileNum;
+		uploader.removeFile(uploader.getFile(fileId));
+		uploader.reset();
+		uploader.refresh();
+		
+	};
+
+	
+	var uploader = WebUploader.create({
+		// 自动上传。
+        auto: true,
+		// 文件接收服务端。
+		server: '/index_new.php/Home/ProduceAccident/uploadImg',
+		// 选择文件的按钮。可选。
+		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		pick: '#filePicker',
+		duplicate :true,
+		// 只允许选择图片文件。
+		accept: {
+			title: 'Images',
+			extensions: 'gif,jpg,jpeg,bmp,png',
+			mimeTypes: 'image/*'
+		}
+	});
+	// 当有文件添加进来的时候
+	uploader.on( 'fileQueued', function( file ){
+		if(fileNum>=2){
+			uploader.removeFile(uploader.getFile(file.id));
+			alert('最多可上传2张图片');
+			return false;
+		}
+		var li = $(
+				'<div id="' + file.id + '" class="file-item thumb-img">' +
+					'<img>' +
+				"<div class='thumb-img-close' onclick='closeThumb(this)'>X</div>"
+				+"<input type='hidden' id='"+file.id+"-thumb' name=thumb[] value='' />"
+				+"</div>"
+				),
+		img =li.find('img');
+
+		var list = $('#fileList');
+		// $list为容器jQuery实例
+		list.append(li);
+		++fileNum;
+		
+		// 创建缩略图
+		uploader.makeThumb( file, function( error, src ) {
+			if ( error ) {
+				$img.replaceWith('<span>不能预览</span>');
+				return;
+			}
+			img.attr( 'src', src );
+		}, 200, 200);
+		uploader.refresh();
+	});
+	// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function(file,data) {  
+        $( '#'+file.id+'-thumb' ).val(data.name);
+
+    });
+
+    // 文件上传失败，现实上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+
+        $error.text('上传失败');
+    });
+	
+	$(function(){
+		$('#reset-from').click(function(){
+			if(confirm("确定重置表单？") == true){
+				
+				/*$('#fileList').html('');
+				$('#question_desc_div').html('');
+				document.getElementById('from-submit').reset();*/
+				window.location.reload();
+				
+			}else{
+				return ;
+			}
+		});
+		
+		
+		
+		$('.question_type').click(function(){
+			
+			if($(this).prop("checked")){
+				
+				var html = "<div class='question_desc_item col-md-10 padding-top padding-bottom' id='question_desc_item_"+$(this).val()+"'>"+
+						"<label  class='col-md-1' for='' >"+$(this).attr('rel')+":</label>"+
+						"<div class='col-md-10'>"+
+						"<input type='text' name='question["+$(this).val()+"]' class='form-control' /></div></div>";
+				$('#question_desc_div').append(html);
+				
+			}else{
+				$('#question_desc_item_'+$(this).val()).remove();
+			}
+		});
+		
+		$('#submit').click(function(e){
+			e.preventDefault();
+            layer.msg('数据提交中...', {
+              icon: 16,
+              shade:0.3
+            });
+			$.ajax({
+				url:'/index_new.php/Home/ProduceAccident/add',
+				type: 'POST',
+				data:$('#from-submit').serialize(),
+				dataType:'json',
+				success:function(d){
+					if(d.error>0){
+                        layer.closeAll();
+						alert(d.message);	
+					}else{
+                        layer.closeAll();
+						alert(d.message); 
+						window.location.href='/index_new.php/Home/ProduceAccident';
+					}
+				}
+				
+			});
+	
+		});
+        $('input[name=channel]').click(function(){
+            if($(this).val() == 1){
+                $('#department-show').text("(南京部)");
+            }else{
+                $('#department-show').text("");
+            }
+            
+        });
+		
+	});
+
+</script>
+
+
+<script type="text/javascript" src="/Public/Js/utils.js"></script>
+
+</body>
+</html>

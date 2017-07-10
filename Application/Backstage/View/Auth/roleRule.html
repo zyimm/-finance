@@ -1,0 +1,90 @@
+<style type="text/css"> 
+.list-group li, .list-link a {
+    padding: 4px 8px;
+    border-bottom:none;
+}
+</style>
+<div class="padding table-responsive">
+	{:crumbs(10,'权限更改')}
+	<hr />
+	<div class="panel">
+		<form action="" method="post" class="form-x" >
+		<input type="hidden" name='role_id' value='{$role_id}' />
+		<volist name="auth_list" id="al"> 
+			<div class="padding"> 
+				<div class="panel-head"> 
+					<input type="checkbox" name='auth[]' class=""  onclick="checkAll(this,1)" value='{$al.id}' />&nbsp;<b class='text-big icon-language'>&nbsp;{$al.title}</b>
+				</div>
+				<volist name="al.node" id="aln"> 
+				<ul class="list-group padding-big-left">
+					<li><input type="checkbox" name='auth[]' class="" onclick="checkAll(this,2)" value='{$aln.id}' />&nbsp;{$aln.title}</li>
+					<li> 
+						<ul class="list-group padding-big-left">
+						<volist name="aln.node" id="alnn"> 
+							<li class="float-left">
+							<input type="checkbox" name='auth[]' value='{$alnn.id}' <if condition="$alnn.check eq 1 "> checked="checked" </if> class="" />&nbsp;{$alnn.title}</li>
+						</volist>
+							<li class="clearfix"></li>
+						</ul>
+					</li>
+				</ul>
+				</volist>				
+			</div>
+		</volist>
+			<div class="padding text-center">
+				<input value="提交保存" class="button bg-blue" type="submit" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript"> 
+	var flag = true;
+	var checkAll=function(o,type){
+		//console.log(flag);
+		var _this = o;
+		if(type == 1){
+			if(flag){
+				$(_this).prop("checked",true);
+				$(_this).parent().siblings('ul').find('input[type=checkbox]').prop("checked",true);
+				flag = false;
+			}else{
+				$(_this).prop("checked",false);
+				$(_this).parent().siblings('ul').find('input[type=checkbox]').prop("checked",false);
+				flag = true;
+			}
+		}else{
+			//console.log($(_this).parent().siblings());
+			if(flag){
+				
+				$(_this).prop("checked",true);
+				$(_this).parent().siblings('li').find('input[type=checkbox]').prop("checked",true);
+				flag = false;
+			}else{
+				$(_this).prop("checked",false);
+				$(_this).parent().siblings('li').find('input[type=checkbox]').prop("checked",false);
+				flag = true;
+			}
+		}
+		
+		
+	};
+	
+	$(function(){
+		$(".form-x").Validform({	
+			tiptype:3,
+			ajaxPost:true,
+			showAllError : true,
+			callback:function(data){
+				if(data.status==1){
+					layer.msg(data.info,{time:2000,icon:1,shade: [0.8, '#393D49']},function(){
+					layer.closeAll();
+					window.location.reload();
+				});	
+				}else{
+					layer.msg(data.info,{icon:2,shade: [0.8, '#393D49']});
+				}
+			}
+		});
+	});
+</script>

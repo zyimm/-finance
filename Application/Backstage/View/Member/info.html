@@ -1,0 +1,50 @@
+ <div class="padding table-responsive">
+	{:crumbs($menu_id)}
+    <blockquote class="layui-elem-quote margin">
+        <button class="icon-search-plus button bg-main search-layer" data-url="__ACTION__">搜索</button>
+    </blockquote>
+    <table class="table margin"> 
+        <tr> 
+            <th>MEMBER-ID</th>
+            <th>用户名</th>
+            <th>真实姓名</th>
+            <th>真实年龄</th>
+            <th>性别</th>
+            <th>月收入</th>
+            <th>身份证号</th>
+            <th>婚姻状况</th> 
+            <th>注册时间</th>
+            <th>操作</th>
+            
+        </tr>
+        <volist name="rows" id="v">
+        <tr> 
+            
+            <td>{$v.id}</td>
+            <td>{$v.user_name}</td>
+            <td>{$v.real_name|default="未知"}</td>
+            <td>{$v.age|default="暂无"}</td>
+            <td>{$v.sex|default="未知"}</td>
+            <td class='text-sub'>{$v.income|default="暂无"}</td>
+            <td class='text-main'>{$v.id_card|default="暂无"}</td>
+            <td class='text-dot'>{$v.marry|default='未婚'}</td>
+            <td>{$v.reg_time|date="Y-m-d H:i",###}</td>
+            <td>
+                <a href="#">---</a>
+            </td>
+            </tr>
+        </volist>
+    </table>
+    <div class="layui-elem-quote admin-page"> 
+        {$page}
+    </div>
+</div>
+
+<div class="hidden search-layer-html"> 
+    <form method="post"  action='__ACTION__' class="form-x"  >
+        <table class="table padding "> 
+            {$search}
+        </table>
+    </form>
+</div>
+ </div>   

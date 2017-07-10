@@ -1,0 +1,189 @@
+<form class="layui-form padding" action="" >
+	<div class="layui-form-item">
+		<label class="layui-form-label x2">真实姓名:</label>
+		<div class="layui-input-block x6 ">
+			<input name="title" lay-verify="title" autocomplete="off" placeholder="请输入真实姓名" class="layui-input layui-form-danger" type="text">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label x2">身份证号:</label>
+		<div class="layui-input-block x6">
+			<input name="username" lay-verify="required" placeholder="请输入身份证号" autocomplete="off" class="layui-input layui-form-danger" type="text">
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">真实年龄:</label>
+		<div class="layui-input-block x6">
+			<input name="age"  placeholder="请输入年龄" autocomplete="off" class="layui-input layui-form-danger" type="number">
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">出生籍贯:</label>
+		<div class="layui-input-block x10">
+			<div class="layui-input-inline">
+                <select name="quiz1">
+                    <option value="">请选择省</option>
+                    <option value="浙江" selected="">浙江省</option>
+                    <option value="你的工号">江西省</option>
+                    <option value="你最喜欢的老师">福建省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="quiz2">
+                    <option value="">请选择市</option>
+                    <option value="杭州">杭州</option>
+                    <option value="宁波" disabled="">宁波</option>
+                    <option value="温州">温州</option>
+                    <option value="温州">台州</option>
+                    <option value="温州">绍兴</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="quiz3">
+                    <option value="">请选择县/区</option>
+                    <option value="西湖区">西湖区</option>
+                    <option value="余杭区">余杭区</option>
+                    <option value="拱墅区">临安市</option>
+                </select>
+            </div>
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">现居地址:</label>
+		<div class="layui-input-block x10">
+			<div class="layui-input-inline">
+                <select name="quiz1">
+                    <option value="">请选择省</option>
+                    <option value="浙江" selected="">浙江省</option>
+                    <option value="你的工号">江西省</option>
+                    <option value="你最喜欢的老师">福建省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="quiz2">
+                    <option value="">请选择市</option>
+                    <option value="杭州">杭州</option>
+                    <option value="宁波" disabled="">宁波</option>
+                    <option value="温州">温州</option>
+                    <option value="温州">台州</option>
+                    <option value="温州">绍兴</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="quiz3">
+                    <option value="">请选择县/区</option>
+                    <option value="西湖区">西湖区</option>
+                    <option value="余杭区">余杭区</option>
+                    <option value="拱墅区">临安市</option>
+                </select>
+            </div>
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">现居住地址:</label>
+		<div class="layui-input-block x6">
+			<input name="age"  placeholder="现居住地址"  class="layui-input layui-form-danger" type="text">
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">性别选择:</label>
+		<div class="layui-input-block x6">
+            <input name="sex" value="男" title="男" checked="" type="radio">
+            <div class="layui-unselect layui-form-radio layui-form-radioed">
+                <i class="layui-anim layui-icon"></i><span>男</span>
+            </div>
+            <input name="sex" value="女" title="女" type="radio">
+            <div class="layui-unselect layui-form-radio">
+                <i class="layui-anim layui-icon"></i><span>女</span>
+            </div>
+        </div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">婚姻状况:</label>
+		<div class="layui-input-block x6">
+			<input name="sex" value="男" title="已婚" checked="" type="radio">
+            <div class="layui-unselect layui-form-radio layui-form-radioed">
+                <i class="layui-anim layui-icon"></i><span>已婚</span>
+            </div>
+            <input name="sex" value="女" title="未婚" type="radio">
+            <div class="layui-unselect layui-form-radio">
+                <i class="layui-anim layui-icon"></i><span>未婚</span>
+            </div>
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">最高学历:</label>
+		<div class="layui-input-block x6">
+			<input name="sex" value="男" title="高中以下" checked="" type="radio">
+            <div class="layui-unselect layui-form-radio layui-form-radioed">
+                <i class="layui-anim layui-icon"></i><span>高中以下</span>
+            </div>
+            <input name="sex" value="女" title="大专或本科" type="radio">
+            <div class="layui-unselect layui-form-radio">
+                <i class="layui-anim layui-icon"></i><span>大专或本科</span>
+            </div>
+            <input name="sex" value="女" title="硕士或硕士以上" type="radio">
+            <div class="layui-unselect layui-form-radio">
+                <i class="layui-anim layui-icon"></i><span>硕士或硕士以上</span>
+            </div>
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">月收入:</label>
+		<div class="layui-input-block x6">
+			<input name="sex" value="男" title="5000以下" checked="" type="radio">
+            <div class="layui-unselect layui-form-radio layui-form-radioed">
+                <i class="layui-anim layui-icon"></i><span>5000以下</span>
+            </div>
+            <input name="sex" value="女" title="5000~10000" type="radio">
+            <div class="layui-unselect layui-form-radio">
+                <i class="layui-anim layui-icon"></i><span>5000~10000</span>
+            </div>
+            <input name="sex" value="女" title="10000以上" type="radio">
+            <div class="layui-unselect layui-form-radio">
+                <i class="layui-anim layui-icon"></i><span>10000以上</span>
+            </div>
+		</div>
+	</div>
+    <div class="layui-form-item">
+		<label class="layui-form-label x2">现职业:</label>
+		<div class="layui-input-block x6">
+			<input name="age"  placeholder="现职业"  class="layui-input layui-form-danger" type="text">
+		</div>
+	</div>
+    <div class="layui-form-item">
+        <div class="x3"></div>
+        <div class="layui-input-block   x4 ">
+          <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+	
+</form>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form();
+  //
+  form.render();
+
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    //,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    
+  });
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return false;
+  });
+  
+  
+});
+</script>
